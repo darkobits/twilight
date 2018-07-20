@@ -1,0 +1,92 @@
+{
+  "name": "twilight",
+  "version": "0.1.0",
+  "description": "Twilio IVR made easy.",
+  "author": "darkobits",
+  "license": "WTFPL",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darkobits/twilight"
+  },
+  "main": "dist/index.js",
+  "engines": {
+    "node": "8.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "del dist",
+    "check:style": "tslint --project tsconfig.json --format codeFrame --fix",
+    "check:types": "tsc --emitDeclarationOnly --pretty && del **/*.spec.d.ts",
+    "check:circular": "madge --circular src",
+    "test": "LOG_LEVEL=silent jest",
+    "prebuild": "run-s clean check:*",
+    "build": "babel src --extensions='.ts' --ignore='**/*.spec.ts,**/*.d.ts' --out-dir=dist --source-maps=inline --verbose",
+    "prepublishOnly": "run-p test build",
+    "prebump": "npm run prepublishOnly",
+    "bump": "standard-version",
+    "bump:beta": "npm run bump -- --prerelease=beta",
+    "link": "npm run build -- --out-dir=$(npx clean-link-dir)/dist --watch"
+  },
+  "peerDependencies": {
+    "express": "^4.16.3"
+  },
+  "dependencies": {
+    "@darkobits/log": "^1.1.3",
+    "ajv": "^6.5.2",
+    "ajv-errors": "^1.0.0",
+    "ajv-keywords": "^3.2.0",
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.1",
+    "dot-prop": "^4.2.0",
+    "is-plain-object": "^2.0.4",
+    "ramda": "~0.25.0",
+    "signal-exit": "^3.0.2",
+    "twilio": "^3.17.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.53",
+    "@babel/core": "^7.0.0-beta.53",
+    "@babel/node": "^7.0.0-beta.53",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.53",
+    "@babel/plugin-proposal-decorators": "^7.0.0-beta.53",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.53",
+    "@babel/preset-env": "^7.0.0-beta.53",
+    "@babel/preset-stage-3": "^7.0.0-beta.53",
+    "@babel/preset-typescript": "^7.0.0-beta.53",
+    "@darkobits/clean-link": "^2.0.1",
+    "@types/camelcase": "^4.1.0",
+    "@types/cosmiconfig": "^5.0.3",
+    "@types/dot-prop": "^4.2.0",
+    "@types/dotenv": "^4.0.3",
+    "@types/express": "^4.16.0",
+    "@types/fs-extra": "^5.0.4",
+    "@types/get-port": "^3.2.0",
+    "@types/is-promise": "^2.1.0",
+    "@types/jest": "^23.1.5",
+    "@types/node": "^10.5.2",
+    "@types/node-cleanup": "^2.1.0",
+    "@types/open": "0.0.29",
+    "@types/p-event": "^1.3.0",
+    "@types/ramda": "^0.25.34",
+    "@types/supertest": "^2.0.4",
+    "@types/tempy": "^0.1.0",
+    "@types/uuid": "^3.4.3",
+    "@types/yargs": "^11.1.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.4.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "del-cli": "^1.1.0",
+    "express": "^4.16.3",
+    "jest": "^23.4.0",
+    "madge": "^3.2.0",
+    "npm-run-all": "^4.1.3",
+    "standard-version": "^4.4.0",
+    "supertest": "^3.1.0",
+    "tslint": "^5.10.0",
+    "tslint-xo": "^0.8.0",
+    "typescript": "^2.9.2",
+    "uuid": "^3.3.2"
+  }
+}
