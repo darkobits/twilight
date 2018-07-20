@@ -3,6 +3,8 @@ import {assertXmlContains} from 'lib/utils';
 import TwiMLDocument from './twiml';
 import CallExecutor from './call-executor';
 
+jest.mock('./call-executor');
+
 
 // Constants used in tests.
 const DEFAULT_APP_NUMBER = '+14155551212';
@@ -242,7 +244,9 @@ describe('TwiMLDocument', () => {
       });
 
       assertXmlContains(`
-        <Dial timeout="${TIMEOUT}"
+        <Dial action="${VOICE_URL}"
+          method="${VOICE_METHOD}"
+          timeout="${TIMEOUT}"
           answerOnBridge="true"
           hangupOnStar="true"
           record="${RECORD}"
@@ -439,14 +443,14 @@ describe('TwiMLDocument', () => {
     });
 
     describe('not providing a value', () => {
-      it('should throw an error', async () => {
+      it('should redirect to the default voice URL', async () => {
         expect.assertions(1);
 
-        try {
-          await twiml.redirect();
-        } catch (err) {
-          expect(err.message).toMatch('[TwiMLDocument::redirect] Invalid options');
-        }
+        await twiml.redirect();
+
+        assertXmlContains(`
+        <Redirect method="${VOICE_METHOD}">${VOICE_URL}</Redirect>
+      `, twiml.render());
       });
     });
   });

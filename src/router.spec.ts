@@ -95,30 +95,20 @@ describe('router', () => {
       return request({
         From: FROM_NUMBER
       })
-        .expect(200)
-        .then(R.prop('text'))
-        .then(assertXmlContains(`
+      .expect(200)
+      .then(R.prop('text'))
+      .then(assertXmlContains(`
         <Say voice="woman"
           language="en-GB">
           ${SAY_VALUE}
         </Say>
-        <Pause length="1" />
-        <Hangup />
       `));
     });
   });
 
   describe('Call Data Not Found', () => {
     it('should forward the call to the primary phone number', async () => {
-      return request({})
-        .expect(200)
-        .then(R.prop('text'))
-        .then(assertXmlContains(`
-          <Dial timeout="${DEFAULT_TIMEOUT}"
-            callerId="${FROM_NUMBER}">
-            <Number>${PRIMARY_PHONE_NUMBER}</Number>
-          </Dial>
-        `));
+      return request({}).expect(500);
     });
   });
 
@@ -127,8 +117,7 @@ describe('router', () => {
       return request({
         ApplicationSid: false,
         AccountSid: false
-      })
-        .expect(400);
+      }).expect(400);
     });
   });
 
@@ -141,8 +130,6 @@ describe('router', () => {
         .then(R.prop('text'))
         .then(assertXmlContains(`
         <Play digits="${SEND_DIGITS_VALUE}" />
-        <Pause length="1" />
-        <Hangup />
       `));
     });
   });

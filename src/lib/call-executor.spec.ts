@@ -58,7 +58,9 @@ describe('CallExecutor', () => {
     } as Request);
 
     assertXmlContains(`
-      <Dial timeout="${DEFAULT_TIMEOUT}"
+      <Dial action="${VOICE_URL}"
+        method="${VOICE_METHOD}"
+        timeout="${DEFAULT_TIMEOUT}"
         callerId="${DEFAULT_APP_NUMBER}">
         <Number>${TO_NUMBER}</Number>
       </Dial>

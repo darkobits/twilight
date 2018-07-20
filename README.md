@@ -4,7 +4,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/@darkobits/twilight"><img src="https://img.shields.io/npm/v/@darkobits/twilight.svg?style=flat-square"></a>
   <a href="https://travis-ci.org/darkobits/twilight"><img src="https://img.shields.io/travis/darkobits/twilight.svg?style=flat-square"></a>
-  <a href="https://www.codacy.com/app/darkobits/twilight"><img src="https://img.shields.io/codacy/coverage/1fbd5676e2df4ec78555c507a4d3d5a3.svg?style=flat-square"></a>
+  <a href="https://www.codacy.com/app/darkobits/twilight"><img src="https://img.shields.io/codacy/coverage/22b43395323a471cb28fdefa5ccc5b4e.svg?style=flat-square"></a>
   <a href="https://github.com/conventional-changelog/standard-version"><img src="https://img.shields.io/badge/conventional%20commits-1.0.0-027dc6.svg?style=flat-square"></a>
   <a href="https://github.com/sindresorhus/xo"><img src="https://img.shields.io/badge/code_style-XO-e271a5.svg?style=flat-square"></a>
 </p>

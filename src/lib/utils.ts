@@ -28,4 +28,4 @@ export function isValidPhoneNumber(phoneNumber?: string): boolean {
 /**
  * Accepts an object and returns a new object with all 'undefined' keys removed.
  */
-export const removeUndefinedKeys = (obj: LooseObject): LooseObject => R.filter(R.complement(R.equals(undefined)), obj);
+export const removeUndefinedKeys = (obj: LooseObject = {}): LooseObject => R.filter(R.complement(R.equals(undefined)), obj);
