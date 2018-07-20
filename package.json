@@ -1,5 +1,5 @@
 {
-  "name": "twilight",
+  "name": "@darkobits/twilight",
   "version": "0.1.0",
   "description": "Twilio IVR made easy.",
   "author": "darkobits",
